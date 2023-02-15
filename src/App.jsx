@@ -25,17 +25,22 @@ class App extends Component {
         ],
     };
 
-    saveChanges = (data) => {
-        const { users } = this.state;
-        const user = this.states.users.find((user) => data.id == user.id);
-        user[type] = data.text;
-        this.setState({ users: [...users, user] });
+    componentDidUpdate = () => {
+        //poslati podatke iz state-a na spremanje u bazu podataka
     };
 
+    saveChanges = (data, type) => {
+        const { users } = this.state;
+        const userIndex = users.findIndex((user) => data.id == user.id);
+        users[userIndex][type] = data.text;
+
+        this.setState({ users: users });
+    };
     render() {
         const { users } = this.state;
+
         return (
-            <div clasName="container">
+            <div className="container">
                 <Users users={users} onSave={this.saveChanges} />
             </div>
         );

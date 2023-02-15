@@ -21,8 +21,9 @@ export default class User extends Component {
     };
 
     render() {
-        const { index, user } = this.props;
+        const { index, user, onSave } = this.props;
         const { isEditName, isEditSurname, isEditAge } = this.state;
+
         return (
             <tr>
                 <td>{index}.</td>
@@ -35,6 +36,7 @@ export default class User extends Component {
                             {user.ime}
                         </span>
                     )}
+
                     {isEditName && (
                         <EditForm
                             text={user.ime}
